@@ -1,0 +1,14 @@
+.header-col {
+  height: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #638ebd;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+.avatar {
+  margin-top: 200px;
+}
