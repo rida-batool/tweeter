@@ -30,3 +30,7 @@ button {
   resize: none;
   font-weight: bold;
 }
+
+.redcolor {
+  color: red;
+}
