@@ -1,5 +1,8 @@
 .new-tweet {
   font-weight: bold;
+}
+
+.new-tweet form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,16 +20,13 @@ button {
   background-color: #4056A1;
 }
 
-.input-tweet {
-  display: flex;
-  flex-direction: column;
-}
-
 
 #tweet-text {
-  resize: none;
-  border: none;
+  background-color: transparent;
+  border: 0;
   outline: none;
-  height: 1.5em;
-  padding: 0.25em;
+  border-bottom: 3px solid;
+  margin-bottom: 1em;
+  resize: none;
+  font-weight: bold;
 }
