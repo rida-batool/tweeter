@@ -1,0 +1,62 @@
+.all-tweets {
+  margin-top: 2em;
+  padding: 1em;
+  border: 3px solid;
+}
+
+.box:hover {
+  box-shadow: 5px 5px 5px #5b72be;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.profile-img {
+  width: 75px;
+}
+
+.name-img {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.handle {
+  font-weight: bold;
+  color: #4056A1;
+}
+
+.my-tweet {
+  font-weight: bold;
+  border-bottom: 3px solid;
+}
+
+footer {
+  font-size: 17px;
+  margin-top: -10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icons {
+  color: #4056A1;
+}
+
+.icons .flag:hover {
+  color: #a48d41;
+}
+
+.icons .retweet:hover {
+  color: #a48d41;
+}
+
+.icons .heart:hover {
+  color: #a48d41;
+}
