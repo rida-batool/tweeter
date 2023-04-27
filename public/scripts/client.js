@@ -4,31 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd"
-//     },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ];
 
 // function createTweetElementKindaBad(tweetData) {
 //   //destructuring the tweetdata
@@ -63,16 +38,21 @@
 // </article>`);
 // }
 
+
+// loops through tweets
+// calls createTweetElement for each tweet
+// takes return value and appends it to the tweets container
 const renderTweets = function(tweets) {
-  // loops through tweets
   for (let tweet of tweets.reverse()) {
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
     const $oneTweet = createTweetElement(tweet);
     $("#tweet-section").append($oneTweet);
   }
 };
 
+const createErrorElement = function(errorMessage) {
+  const $tweetErrorDiv = $("<div>").attr("id", "tweet-Error").text(errorMessage);
+  return $tweetErrorDiv;
+};
 
 const createTweetElement = function(tweetData) {
   //destructuring the tweetdata
@@ -110,36 +90,41 @@ const createTweetElement = function(tweetData) {
 const addTweet = function(event) {
   //prevents from reloading the page
   event.preventDefault();
+  //Slide out the Error message 
+  $("#errors").slideUp("fast");
+  $("#errors").hide();
+
   //saving the user-tweet from the form using jQuery
   const tweetTextArea = $("#tweet-text");
   const body = tweetTextArea.val();
   // Perform validation checks
+  //Check whether the tweet empty
+  let flag = false;
+  let errorMessages = "";
   if (body === "") {
-    alert("Please enter a tweet.");
-    return;
+    errorMessages += "Error! Empty Tweet. Please write something";
+    flag = true;
   }
-
+  //check whether the tweet size has gone beyond 140 characters
   if (body.length > 140) {
-    alert("Tweet exceeds the character limit of 140.");
-    return;
+    errorMessages += "\n Error! Tweet exceeds 140 characters limit";
+    flag = true;
   }
 
+  if (flag) {
+    $error = createErrorElement(errorMessages);
+    $("#errors").append($error);
+    $("#errors").slideDown("slow");
+    $("#errors").show();
+    return;
+  }
   $.ajax({
     method: "POST",
     url: "http://localhost:8080/tweets",
     data: { text: body },
-  }).then((res) => {
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/tweets",
-    }).then((res) => {
-      const formattedResponse = formatResponse(res);
-      const tweet = formattedResponse[formattedResponse.length - 1];
-      const $oneTweet = createTweetElement(tweet);
-      $("#tweet-section").prepend($oneTweet);
-      resetForm();
-    });
-  });
+  }).then(() => { loadTweets(); });
+  // .then($(".new-tweet").trigger("reset"));
+  resetForm();
 };
 
 const formatResponse = function(response) {
@@ -153,6 +138,8 @@ const resetForm = function() {
   //  remove text from  const tweetTextArea = $("#tweet-text");
   $("#tweet-text").val("");
   $("#tweet-text").trigger("input");
+  // $("#counterError").hide();
+  // $("#tweetError").hide();
 
 };
 
@@ -161,18 +148,15 @@ const loadTweets = function() {
     method: "GET",
     url: "http://localhost:8080/tweets",
   }).then((res) => {
-    //console.log("response:", timeago.format(res[0]["created_at"]));
+    $("#tweet-section").empty();
     const formattedResponse = formatResponse(res);
     renderTweets(formattedResponse);
   });
 };
 
 
-
 $(document).ready(function() {
-
   loadTweets();
-
   $("form").on("submit", addTweet);
 
 });
