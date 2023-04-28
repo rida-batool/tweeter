@@ -102,17 +102,18 @@ const addTweet = function(event) {
   let flag = false;
   let errorMessages = "";
   if (body === "") {
-    errorMessages += "Error! Empty Tweet. Please write something";
+    errorMessages = "Error! Empty Tweet. Please write something";
     flag = true;
   }
   //check whether the tweet size has gone beyond 140 characters
   if (body.length > 140) {
-    errorMessages += "\n Error! Tweet exceeds 140 characters limit";
+    errorMessages = "Error! Tweet exceeds 140 characters limit";
     flag = true;
   }
 
   if (flag) {
     $error = createErrorElement(errorMessages);
+    $("#errors").empty();
     $("#errors").append($error);
     $("#errors").slideDown("slow");
     $("#errors").show();
@@ -138,9 +139,6 @@ const resetForm = function() {
   //  remove text from  const tweetTextArea = $("#tweet-text");
   $("#tweet-text").val("");
   $("#tweet-text").trigger("input");
-  // $("#counterError").hide();
-  // $("#tweetError").hide();
-
 };
 
 const loadTweets = function() {

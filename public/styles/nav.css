@@ -1,3 +1,13 @@
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  background-color: transparent;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .nav-logo {
   font-family: 'Bungee';
   color: #FFFFFF;
@@ -18,12 +28,8 @@
   text-align: center;
 }
 
-.nav-bar {
-  width: 100%;
-  position: fixed;
-  background-color: #4056A1;
-  height: 120px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+@media only screen and (min-width: 768px) {
+  .nav-bar {
+    background-color: #4056A1;
+  }
 }

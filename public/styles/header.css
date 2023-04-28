@@ -16,3 +16,12 @@
 header .name {
   margin-top: -15px;
 }
+
+@media only screen and (min-width: 1024px) {
+
+  .header-col {
+    margin: 12em 1em 0em 3em;
+    width: 50%;
+    height: 500px;
+  }
+}

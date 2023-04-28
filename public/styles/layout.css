@@ -34,3 +34,19 @@ body {
   background-color: #f4f1ec;
   margin: 1em auto;
 }
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1024px) {
+  .layout {
+    /* width: 70%; */
+    flex-direction: row;
+  }
+
+  .container {
+    padding: 200px 100px 0px 50px;
+  }
+}
