@@ -24,7 +24,9 @@ A simple single-page AJAX-based clone that uses HTML5, CSS, JS, jQuery and Expre
 
 ## Overview of the App
 
-![Windows View](/images/windowview.PNG);
-![Tbalet View](/images/tablet-view.PNG);
+### Windows View
+![Windows View](/images/windowview.PNG)
+### Tablet View
+![Tbalet View](/images/tablet-view.PNG)
 
 
